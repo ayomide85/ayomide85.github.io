@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Morufat Ganiu | Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Cabinet+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #f7f4ef;
+  --ink: #1c1917;
+  --teal: #0d6e6e;
+  --teal-light: #e0f0f0;
+  --teal-mid: #1a9898;
+  --stone: #78716c;
+  --border: #e2ddd8;
+  --white: #ffffff;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Cabinet Grotesk', sans-serif; background: var(--bg); color: var(--ink); overflow-x: hidden; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 10px; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.4rem 5rem;
+  background: rgba(247,244,239,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: 1px; }
+.nav-logo span { color: var(--teal); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+.nav-links a { color: var(--stone); text-decoration: none; font-size: 0.82rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--teal); }
+.nav-cta { background: var(--teal) !important; color: white !important; padding: 0.5rem 1.2rem; border-radius: 0.3rem; }
+
+/* HERO */
+.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 5rem; overflow: hidden; }
+.hero-left { padding: 7rem 4rem 4rem 5rem; display: flex; flex-direction: column; justify-content: center; }
+.hero-eyebrow { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 2rem; }
+.eyebrow-line { width: 40px; height: 2px; background: var(--teal); }
+.eyebrow-text { font-size: 0.78rem; letter-spacing: 3px; text-transform: uppercase; color: var(--teal); font-weight: 500; }
+.hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 700; line-height: 1.05; animation: fadeUp 0.9s ease both; }
+.hero h1 em { font-style: italic; color: var(--teal); }
+.hero-tagline { margin-top: 1.6rem; font-size: 1.05rem; line-height: 1.75; color: var(--stone); max-width: 480px; animation: fadeUp 1s 0.15s ease both; }
+.hero-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; animation: fadeUp 1s 0.25s ease both; }
+.badge { background: var(--teal-light); color: var(--teal); font-size: 0.78rem; padding: 0.35rem 0.9rem; border-radius: 2rem; font-weight: 500; }
+.hero-actions { display: flex; gap: 1rem; margin-top: 2.8rem; animation: fadeUp 1s 0.35s ease both; }
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; border-radius: 0.35rem; font-family: 'Cabinet Grotesk', sans-serif; font-size: 0.9rem; font-weight: 500; text-decoration: none; cursor: pointer; border: none; transition: all 0.25s; }
+.btn-primary { background: var(--teal); color: white; box-shadow: 0 4px 18px rgba(13,110,110,0.25); }
+.btn-primary:hover { background: var(--teal-mid); transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
+.btn-ghost:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+
+.hero-right { background: var(--teal); display: flex; flex-direction: column; justify-content: flex-end; padding: 4rem; position: relative; overflow: hidden; }
+.hero-right::before { content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; border-radius: 50%; background: rgba(255,255,255,0.05); }
+.hero-right::after { content: ''; position: absolute; bottom: -60px; left: -60px; width: 250px; height: 250px; border-radius: 50%; background: rgba(255,255,255,0.05); }
+.hero-name-big { font-family: 'Cormorant Garamond', serif; font-size: clamp(4rem, 8vw, 9rem); font-weight: 700; color: rgba(255,255,255,0.07); line-height: 0.85; letter-spacing: -0.03em; user-select: none; position: absolute; bottom: 2rem; right: -1rem; }
+.stats-panel { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.stat-box { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); border-radius: 1rem; padding: 1.5rem; }
+.stat-box .num { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 700; color: white; line-height: 1; }
+.stat-box .label { font-size: 0.75rem; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 0.4rem; }
+.location-chip { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: white; font-size: 0.85rem; padding: 0.5rem 1rem; border-radius: 2rem; margin-bottom: 2rem; width: fit-content; }
+
+/* SECTIONS */
+section { padding: 6rem 5rem; }
+.section-kicker { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
+.kicker-line { width: 32px; height: 2px; background: var(--teal); }
+.kicker-text { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--teal); font-weight: 600; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 700; line-height: 1.1; margin-bottom: 3rem; }
+.section-title em { font-style: italic; color: var(--teal); }
+
+/* EXPERIENCE */
+.experience { background: var(--white); }
+.exp-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; max-width: 1100px; margin: 0 auto; align-items: start; }
+.exp-sidebar { position: sticky; top: 8rem; }
+.exp-sidebar p { color: var(--stone); line-height: 1.75; font-size: 1rem; margin-top: 1rem; }
+.exp-item { border-left: 2px solid var(--border); padding: 0 0 3rem 2rem; position: relative; transition: border-color 0.3s; }
+.exp-item:last-child { padding-bottom: 0; }
+.exp-item::before { content: ''; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--border); transition: all 0.3s; }
+.exp-item:hover { border-left-color: var(--teal); }
+.exp-item:hover::before { background: var(--teal); border-color: var(--teal); }
+.exp-meta { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.3rem; flex-wrap: wrap; gap: 0.5rem; }
+.exp-role { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 700; }
+.exp-period { font-size: 0.78rem; color: var(--teal); background: var(--teal-light); padding: 0.3rem 0.8rem; border-radius: 2rem; font-weight: 500; }
+.exp-company { color: var(--teal); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
+.exp-location { color: var(--stone); font-size: 0.82rem; margin-bottom: 1.2rem; }
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.exp-bullets li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.93rem; color: var(--stone); line-height: 1.65; }
+.exp-bullets li::before { content: '→'; color: var(--teal); font-size: 0.9rem; flex-shrink: 0; margin-top: 0.1rem; }
+.exp-bullets strong { color: var(--ink); }
+
+/* SKILLS */
+.skills-section { background: var(--bg); }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+.skill-card { background: var(--white); border: 1px solid var(--border); border-radius: 1rem; padding: 1.8rem; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; }
+.skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); border-color: var(--teal); }
+.skill-card-icon { font-size: 1.6rem; margin-bottom: 1rem; }
+.skill-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.8rem; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.skill-tag { background: var(--teal-light); color: var(--teal); font-size: 0.75rem; padding: 0.25rem 0.7rem; border-radius: 1rem; }
+
+/* PROJECTS */
+.projects { background: var(--ink); }
+.projects .section-title { color: var(--bg); }
+.projects .kicker-text { color: var(--teal-mid); }
+.projects .kicker-line { background: var(--teal-mid); }
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
+.proj-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 1.2rem; padding: 2rem; text-decoration: none; color: inherit; display: block; transition: all 0.3s; }
+.proj-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(13,110,110,0.5); transform: translateY(-5px); }
+.proj-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+.proj-type { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--teal-mid); font-weight: 600; }
+.proj-arrow { color: rgba(255,255,255,0.3); font-size: 1.2rem; transition: color 0.2s, transform 0.2s; }
+.proj-card:hover .proj-arrow { color: var(--teal-mid); transform: translate(3px,-3px); }
+.proj-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; color: var(--bg); margin-bottom: 0.8rem; line-height: 1.25; }
+.proj-card p { color: rgba(247,244,239,0.55); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.2rem; }
+.proj-insight { background: rgba(13,110,110,0.15); border-left: 3px solid var(--teal); padding: 0.6rem 0.9rem; border-radius: 0 0.4rem 0.4rem 0; font-size: 0.82rem; color: rgba(247,244,239,0.75); line-height: 1.5; margin-bottom: 1.2rem; }
+.proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.proj-tag { background: rgba(255,255,255,0.06); color: rgba(247,244,239,0.5); font-size: 0.73rem; padding: 0.25rem 0.65rem; border-radius: 1rem; }
+
+/* ARTICLES */
+.articles { background: var(--white); }
+.articles-inner { max-width: 860px; margin: 0 auto; }
+.article-row { display: grid; grid-template-columns: 60px 1fr auto; align-items: start; gap: 1.5rem; padding: 2rem 0; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; transition: all 0.2s; }
+.article-row:last-child { border-bottom: none; }
+.article-row:hover .article-num { color: var(--teal); }
+.article-row:hover .article-title { color: var(--teal); }
+.article-num { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700; color: var(--border); line-height: 1; }
+.article-title { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.35rem; line-height: 1.3; transition: color 0.2s; }
+.article-desc { color: var(--stone); font-size: 0.9rem; line-height: 1.6; }
+.article-date { font-size: 0.78rem; color: var(--stone); white-space: nowrap; padding-top: 0.3rem; }
+
+/* EDUCATION */
+.education { background: var(--bg); }
+.edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1000px; margin: 0 auto; }
+.edu-card { background: var(--white); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; transition: border-color 0.3s, transform 0.3s; }
+.edu-card:hover { border-color: var(--teal); transform: translateY(-3px); }
+.edu-card-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+.edu-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem; }
+.edu-card .inst { color: var(--teal); font-size: 0.88rem; font-weight: 600; margin-bottom: 0.2rem; }
+.edu-card .year { color: var(--stone); font-size: 0.82rem; }
+.edu-card a { color: var(--teal); font-size: 0.82rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem; margin-top: 0.8rem; font-weight: 500; }
+.edu-card a:hover { text-decoration: underline; }
+
+/* CONTACT */
+.contact { background: var(--teal); text-align: center; padding: 7rem 5rem; }
+.contact .section-title { color: white; }
+.contact .kicker-text { color: rgba(255,255,255,0.7); }
+.contact .kicker-line { background: rgba(255,255,255,0.4); }
+.contact-sub { color: rgba(255,255,255,0.75); font-size: 1.05rem; line-height: 1.7; max-width: 520px; margin: 1rem auto 3rem; }
+.contact-cards { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
+.contact-card { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: white; text-decoration: none; padding: 0.9rem 1.6rem; border-radius: 0.5rem; font-size: 0.9rem; font-weight: 500; transition: all 0.25s; }
+.contact-card:hover { background: rgba(255,255,255,0.22); transform: translateY(-2px); }
+.contact-card svg { width: 17px; height: 17px; }
+
+footer { background: var(--ink); text-align: center; padding: 2.5rem 4rem; color: rgba(247,244,239,0.3); font-size: 0.82rem; }
+footer span { color: var(--teal-mid); }
+
+@keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+.reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.d1 { transition-delay:0.1s; } .d2 { transition-delay:0.2s; } .d3 { transition-delay:0.3s; }
+
+@media(max-width:900px){
+  nav { padding:1rem 1.5rem; }
+  .nav-links { display:none; }
+  .hero { grid-template-columns:1fr; }
+  .hero-left { padding:7rem 1.5rem 3rem; }
+  .hero-right { padding:2rem 1.5rem 3rem; min-height:280px; }
+  section { padding:4rem 1.5rem; }
+  .exp-grid { grid-template-columns:1fr; gap:2rem; }
+  .exp-sidebar { position:static; }
+  .edu-grid { grid-template-columns:1fr; }
+  .article-row { grid-template-columns:40px 1fr; }
+  .article-date { display:none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Morufat <span>Ganiu</span></a>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#articles">Writing</a></li>
+    <li><a href="#education">Credentials</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Bilingual Data Analyst · EN & FR</span>
+    </div>
+    <h1>I turn messy<br/>data into<br/><em>clear decisions.</em></h1>
+    <p class="hero-tagline">3+ years transforming complex datasets into actionable insights for healthcare and marketing stakeholders — in English and French.</p>
+    <div class="hero-badges">
+      <span class="badge">SQL</span><span class="badge">Python</span>
+      <span class="badge">Power BI</span><span class="badge">Tableau</span>
+      <span class="badge">AWS</span><span class="badge">R</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">See My Work →</a>
+      <a href="#contact" class="btn btn-ghost">Let's Talk</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="location-chip">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Montreal, Quebec
+    </div>
+    <div class="stats-panel">
+      <div class="stat-box"><div class="num">3+</div><div class="label">Years Experience</div></div>
+      <div class="stat-box"><div class="num">50%</div><div class="label">Healthcare Data Accuracy Gain</div></div>
+      <div class="stat-box"><div class="num">30%</div><div class="label">Reporting Time Saved</div></div>
+      <div class="stat-box"><div class="num">+20%</div><div class="label">Sales Lift Achieved</div></div>
+    </div>
+    <div class="hero-name-big">MG</div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="exp-grid">
+    <div class="exp-sidebar reveal">
+      <div class="section-kicker"><div class="kicker-line"></div><span class="kicker-text">Career</span></div>
+      <h2 class="section-title">Where I've Made an <em>Impact</em></h2>
+      <p>From healthcare in Lagos to marketing in Montreal — I've built dashboards, automated reporting, and uncovered insights that changed how teams operate.</p>
+    </div>
+    <div>
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <span class="exp-role">Data Analyst</span>
+          <span class="exp-period">Mar 2023 – Present</span>
+        </div>
+        <div class="exp-company">AD-DARS Academy</div>
+        <div class="exp-location">Montreal, QC</div>
+        <ul class="exp-bullets">
+          <li>Automated Power BI dashboards, cutting manual reporting by <strong>30%</strong> and speeding up executive decisions by <strong>20%</strong>.</li>
+          <li>Wrote advanced SQL queries to monitor marketing campaigns, driving a <strong>15% ROI increase</strong>.</li>
+          <li>Applied Python time-series analysis to uncover customer trends, boosting engagement by <strong>20%</strong>.</li>
+          <li>Partnered cross-functionally to define KPIs, improving team efficiency by <strong>20%</strong>.</li>
+          <li>Delivered presentations that directly influenced budget allocation and campaign strategy.</li>
+        </ul>
+      </div>
+      <div class="exp-item reveal d1">
+        <div class="exp-meta">
+          <span class="exp-role">Data Analyst</span>
+          <span class="exp-period">Mar 2022 – Mar 2023</span>
+        </div>
+        <div class="exp-company">National Orthopaedic Hospital</div>
+        <div class="exp-location">Lagos, Nigeria</div>
+        <ul class="exp-bullets">
+          <li>Built a SQL-driven patient database that improved record accuracy by <strong>50%</strong>.</li>
+          <li>Developed Power BI dashboards helping clinicians identify risk factors, improving decision quality by <strong>30%</strong>.</li>
+          <li>Applied statistical models to patient data to inform treatment planning and improve patient outcomes.</li>
+          <li>Collaborated with clinicians to maintain data integrity and enable long-term outcome tracking.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-kicker reveal"><div class="kicker-line"></div><span class="kicker-text">Toolkit</span></div>
+    <h2 class="section-title reveal">Skills & <em>Technologies</em></h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal"><div class="skill-card-icon">🗄️</div><h4>Databases & Programming</h4><div class="skill-tags"><span class="skill-tag">SQL</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">MySQL</span><span class="skill-tag">Python</span><span class="skill-tag">Pandas</span><span class="skill-tag">NumPy</span><span class="skill-tag">Scikit-Learn</span><span class="skill-tag">R</span><span class="skill-tag">SAS</span></div></div>
+      <div class="skill-card reveal d1"><div class="skill-card-icon">📊</div><h4>BI & Visualization</h4><div class="skill-tags"><span class="skill-tag">Power BI</span><span class="skill-tag">DAX</span><span class="skill-tag">Power Query</span><span class="skill-tag">Tableau</span><span class="skill-tag">Excel</span><span class="skill-tag">Google Sheets</span><span class="skill-tag">Jupyter</span></div></div>
+      <div class="skill-card reveal d2"><div class="skill-card-icon">☁️</div><h4>Cloud & Platforms</h4><div class="skill-tags"><span class="skill-tag">AWS</span><span class="skill-tag">Google Cloud</span><span class="skill-tag">Microsoft Power Platform</span></div></div>
+      <div class="skill-card reveal d3"><div class="skill-card-icon">📐</div><h4>Analytics Techniques</h4><div class="skill-tags"><span class="skill-tag">A/B Testing</span><span class="skill-tag">Regression</span><span class="skill-tag">Time Series</span><span class="skill-tag">Forecasting</span><span class="skill-tag">Hypothesis Testing</span><span class="skill-tag">Statistical Modelling</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-kicker reveal"><div class="kicker-line"></div><span class="kicker-text">Portfolio</span></div>
+    <h2 class="section-title reveal">Projects That <em>Speak</em></h2>
+    <div class="projects-grid">
+      <a href="https://medium.com/@ayomidemorufat85/superstore-sales-analysis-with-python-7aefc7438dbe" target="_blank" class="proj-card reveal">
+        <div class="proj-header"><span class="proj-type">Python · EDA · Retail</span><span class="proj-arrow">↗</span></div>
+        <h3>Superstore Sales Analysis</h3>
+        <p>End-to-end EDA on a retail dataset — cleaned, transformed, and visualized to surface actionable sales intelligence.</p>
+        <div class="proj-insight">💡 Eggs, Meat & Fish = 30% of sales. March, October & December peak months identified.</div>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Pandas</span><span class="proj-tag">Matplotlib</span><span class="proj-tag">Jupyter</span></div>
+      </a>
+      <a href="https://medium.com/@ayomidemorufat85/financial-data-analytics-313aa5e7c756" target="_blank" class="proj-card reveal d1">
+        <div class="proj-header"><span class="proj-type">Power BI · DAX · Finance</span><span class="proj-arrow">↗</span></div>
+        <h3>Financial Data Analytics Dashboard</h3>
+        <p>Three-page Power BI dashboard built with star schema and DAX-derived metrics for executive-level financial reporting.</p>
+        <div class="proj-insight">💡 Household items drove 45% of profits. Europe outperformed North America in sales.</div>
+        <div class="proj-tags"><span class="proj-tag">Power BI</span><span class="proj-tag">DAX</span><span class="proj-tag">Excel</span></div>
+      </a>
+      <a href="https://medium.com/@ayomidemorufat85/exploratory-data-analysis-project-power-bi-report-c22d350df487" target="_blank" class="proj-card reveal d2">
+        <div class="proj-header"><span class="proj-type">Power BI · EDA</span><span class="proj-arrow">↗</span></div>
+        <h3>EDA Power BI Report</h3>
+        <p>Fully interactive Power BI report transforming raw data into stakeholder-ready KPI visuals — no spreadsheet required.</p>
+        <div class="proj-insight">💡 Designed for non-technical executives to make decisions with confidence.</div>
+        <div class="proj-tags"><span class="proj-tag">Power BI</span><span class="proj-tag">EDA</span><span class="proj-tag">Dashboard</span></div>
+      </a>
+      <a href="https://medium.com/@ayomidemorufat85/tech-layoff-analysis-2020-2022-dc47466c5855" target="_blank" class="proj-card reveal">
+        <div class="proj-header"><span class="proj-type">SQL · Industry Analysis</span><span class="proj-arrow">↗</span></div>
+        <h3>Tech Layoff Analysis (2020–2022)</h3>
+        <p>Investigated workforce reduction patterns across tech companies — who was affected, where, and what the data reveals.</p>
+        <div class="proj-insight">💡 Data-driven story of how the pandemic reshaped the global tech workforce.</div>
+        <div class="proj-tags"><span class="proj-tag">SQL</span><span class="proj-tag">Excel</span><span class="proj-tag">Trend Analysis</span></div>
+      </a>
+      <a href="https://medium.com/@ayomidemorufat85/sports-price-car-analysis-a90df8b04807" target="_blank" class="proj-card reveal d1">
+        <div class="proj-header"><span class="proj-type">Python · Automotive</span><span class="proj-arrow">↗</span></div>
+        <h3>Sports Car Price Analysis</h3>
+        <p>Analyzed performance specs and pricing of sports cars to identify variables that most strongly influence market value.</p>
+        <div class="proj-insight">💡 Horsepower and brand prestige outweigh age as the primary pricing drivers.</div>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Data Cleaning</span><span class="proj-tag">Visualization</span></div>
+      </a>
+      <a href="https://github.com/ayomide85" target="_blank" class="proj-card reveal d2" style="border-style:dashed;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:240px;">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">⭐</div>
+        <h3 style="color:rgba(247,244,239,0.7);font-size:1.1rem;">More on GitHub</h3>
+        <p>Explore the full codebase and repositories</p>
+        <div style="color:var(--teal-mid);font-size:0.85rem;margin-top:1rem;font-weight:500;">github.com/ayomide85 →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section class="articles" id="articles">
+  <div class="articles-inner">
+    <div class="section-kicker reveal"><div class="kicker-line"></div><span class="kicker-text">Writing</span></div>
+    <h2 class="section-title reveal">Thoughts on <em>Data</em></h2>
+    <a href="https://medium.com/@ayomidemorufat85/superstore-sales-analysis-with-python-7aefc7438dbe" target="_blank" class="article-row reveal">
+      <div class="article-num">01</div>
+      <div><div class="article-title">Superstore Sales Analysis with Python</div><div class="article-desc">From raw Kaggle data to seasonal trends and category performance insights — a full Python walkthrough.</div></div>
+      <div class="article-date">Aug 2023</div>
+    </a>
+    <a href="https://medium.com/@ayomidemorufat85/sports-price-car-analysis-a90df8b04807" target="_blank" class="article-row reveal">
+      <div class="article-num">02</div>
+      <div><div class="article-title">Sports Car Price Analysis</div><div class="article-desc">What really drives a sports car's price? Performance specs, brand value, and data have the answer.</div></div>
+      <div class="article-date">May 2023</div>
+    </a>
+    <a href="https://medium.com/@ayomidemorufat85/exploratory-data-analysis-project-power-bi-report-c22d350df487" target="_blank" class="article-row reveal">
+      <div class="article-num">03</div>
+      <div><div class="article-title">Exploratory Data Analysis: Power BI Report</div><div class="article-desc">Building an executive-ready Power BI dashboard that turns raw EDA into a living, interactive report.</div></div>
+      <div class="article-date">Mar 2023</div>
+    </a>
+    <a href="https://medium.com/@ayomidemorufat85/tech-layoff-analysis-2020-2022-dc47466c5855" target="_blank" class="article-row reveal">
+      <div class="article-num">04</div>
+      <div><div class="article-title">Tech Layoff Analysis (2020–2022)</div><div class="article-desc">Three years of tech workforce upheaval — who got cut, where, and what the patterns reveal.</div></div>
+      <div class="article-date">Feb 2023</div>
+    </a>
+    <a href="https://medium.com/@ayomidemorufat85/financial-data-analytics-313aa5e7c756" target="_blank" class="article-row reveal">
+      <div class="article-num">05</div>
+      <div><div class="article-title">Financial Data Analytics</div><div class="article-desc">Applying analytics to financial datasets to surface the trends, risks, and opportunities hidden in plain sight.</div></div>
+      <div class="article-date">Feb 2023</div>
+    </a>
+    <div style="text-align:center;margin-top:3rem;" class="reveal">
+      <a href="https://medium.com/@ayomidemorufat85" target="_blank" class="btn btn-ghost">Read All on Medium →</a>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="education" id="education">
+  <div style="max-width:1000px;margin:0 auto;">
+    <div class="section-kicker reveal"><div class="kicker-line"></div><span class="kicker-text">Credentials</span></div>
+    <h2 class="section-title reveal">Education & <em>Certifications</em></h2>
+    <div class="edu-grid">
+      <div class="edu-card reveal"><div class="edu-card-icon">🎓</div><h4>BSc Statistics</h4><div class="inst">University of Lagos</div><div class="year">Graduated December 2021</div></div>
+      <div class="edu-card reveal d1"><div class="edu-card-icon">📜</div><h4>Microsoft Certified: Power BI Data Analyst Associate</h4><div class="inst">Microsoft</div><div class="year">October 2023</div><a href="https://learn.microsoft.com/api/credentials/share/en-gb/MorufatGaniu-7274/E794889B4B86CE9D?sharingId=1743D2E30E2FB7C4" target="_blank">View Credential ↗</a></div>
+      <div class="edu-card reveal d2"><div class="edu-card-icon">🏅</div><h4>DataCamp Certified: SQL Associate</h4><div class="inst">DataCamp</div><div class="year">March 2024</div><a href="https://www.datacamp.com/certificate/SQA0012156186391" target="_blank">View Credential ↗</a></div>
+      <div class="edu-card reveal d3"><div class="edu-card-icon">🌍</div><h4>Bilingual Professional</h4><div class="inst">English & French — Fluent</div><div class="year">A rare edge in Montreal's bilingual business environment.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-kicker" style="justify-content:center;margin-bottom:1rem;">
+    <div class="kicker-line"></div><span class="kicker-text">Contact</span><div class="kicker-line"></div>
+  </div>
+  <h2 class="section-title reveal">Ready to Work<br/>Together?</h2>
+  <p class="contact-sub reveal">Whether you're hiring, collaborating, or want to talk data — my inbox is always open. I respond quickly.</p>
+  <div class="contact-cards reveal">
+    <a href="mailto:morufatganiuayomide@gmail.com" class="contact-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      morufatganiuayomide@gmail.com
+    </a>
+    <a href="https://www.linkedin.com/in/morufat-ganiu" target="_blank" class="contact-card">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://github.com/ayomide85" target="_blank" class="contact-card">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      GitHub
+    </a>
+    <a href="https://medium.com/@ayomidemorufat85" target="_blank" class="contact-card">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+      Medium
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2024 <span>Morufat Ganiu</span> · Data Analyst · Montreal, QC</p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((e) => {
+    e.forEach(el => { if(el.isIntersecting) el.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
